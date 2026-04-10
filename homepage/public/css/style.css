@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FF0000;
+    margin: 0;
+    padding: 20px;
+}
+
+.club-card {
+    background: yellow;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,1);
+    padding: 20px;
+    margin: 10px;
+    display: inline-block;
+    width: 220px;
+    text-align:center;
+}
+
+.club-card h2 {
+    margin: 10px;
+    font-size: 20px;
+    color: purple;
+}
+
+.club-card p {
+    font-size: 14px;
+    color: pink;
+}

@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>University Clubs</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 </head>
 <body>
 
         <h2>Explore Our Clubs</h2>
         <div class="club-grid">
+
             <div class="club-card">
                 <h3>Drama Club</h3>
                 <p>Explore your creativity through acting and stage performance.</p>
