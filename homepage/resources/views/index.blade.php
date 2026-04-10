@@ -12,11 +12,13 @@
         <div class="club-grid">
 
             <div class="club-card">
+                <img src="{{ asset('images/picture 1.jpg') }}" alt="'Drama Club" style="width:100%; height:auto;">
                 <h3>Drama Club</h3>
                 <p>Explore your creativity through acting and stage performance.</p>
             </div>
 
             <div class="club-card">
+                <img src="{{ asset('images/picture 2.jpg') }}" alt="'Chess Club" style="width:100%; height:auto;">
                 <h3>Chess Club</h3>
                 <p>Sharpen your mind with weekly chess matches and tournaments.</p>
             </div>
