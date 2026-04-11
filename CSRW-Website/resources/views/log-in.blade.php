@@ -5,12 +5,16 @@
     <title>Log In</title>
 </head>
 <body>
-    <form action="" method="POST">
+    <form action="log-in.blade.php" method="POST">
         <label for="Email">Email</label><br>
-        <input type = "text" name = "Email">
-        <label for="Password">Password</label>
-        <input type="text" name = "Password">
-        <input type="button" value="Log In">
+        <input type = "text" name = "Email"><br>
+        <label for="Password">Password</label><br>
+        <input type="text" name = "Password"><br>
+        <input type="button" value="Log In"><br>
     </form>
 </body>
 </html>
+
+<?php 
+    echo $_GET ["Email"];
+?>
