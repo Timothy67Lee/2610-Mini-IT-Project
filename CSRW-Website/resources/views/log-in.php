@@ -5,6 +5,12 @@
     <title>Log In</title>
 </head>
 <body>
-    
+    <form action="" method="POST">
+        <label for="Email">Email</label>
+        <input type = "text" name = "Email">
+        <label for="Password"></label>
+        <input type="text" name = "Password">
+        <input type="button" value="Log In">
+    </form>
 </body>
 </html>
