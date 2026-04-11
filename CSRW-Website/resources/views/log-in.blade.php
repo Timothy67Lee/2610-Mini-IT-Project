@@ -5,16 +5,16 @@
     <title>Log In</title>
 </head>
 <body>
-    <form action="log-in.blade.php" method="POST">
+    <form action="resources/views/log-in.blade.php" method="post">
         <label for="Email">Email</label><br>
-        <input type = "text" name = "Email"><br>
+        <input type="text" name="Email"><br>
         <label for="Password">Password</label><br>
         <input type="text" name = "Password"><br>
-        <input type="button" value="Log In"><br>
+        <input type="submit" value="Log In"><br>
     </form>
 </body>
 </html>
 
-<?php 
-    echo $_GET ["Email"];
+<? php
+    echo $_POST["Email"];
 ?>
