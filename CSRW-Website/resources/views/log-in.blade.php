@@ -6,9 +6,9 @@
 </head>
 <body>
     <form action="" method="POST">
-        <label for="Email">Email</label>
+        <label for="Email">Email</label><br>
         <input type = "text" name = "Email">
-        <label for="Password"></label>
+        <label for="Password">Password</label>
         <input type="text" name = "Password">
         <input type="button" value="Log In">
     </form>
