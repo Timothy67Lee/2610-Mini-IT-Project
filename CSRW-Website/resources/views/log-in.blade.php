@@ -5,7 +5,7 @@
     <title>Log In</title>
 </head>
 <body>
-    <form action="resources/views/log-in.blade.php" method="post">
+    <form action="" method="post">
         <label for="Email">Email</label><br>
         <input type="text" name="Email"><br>
         <label for="Password">Password</label><br>
@@ -14,7 +14,3 @@
     </form>
 </body>
 </html>
-
-<? php
-    echo $_POST["Email"];
-?>
