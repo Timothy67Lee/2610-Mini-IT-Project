@@ -8,7 +8,10 @@
 </head>
 <body>
 
-    <h2>Explore Our Clubs</h2>
+    <header>
+     <h2>Explore Our Clubs</h2>
+    </header>
+
     <div class="club-grid">
 
             <a href="/clubs/drama" class="club-card">
@@ -52,5 +55,6 @@
     <footer>
         <p> 2026 UNIVERSITY CLUBS </p>
     </footer>
+    
 </body>
 </html>
