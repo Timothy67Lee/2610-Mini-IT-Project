@@ -41,7 +41,7 @@
             <a href="/clubs/badminton" class="club-card">
                 <img src="{{ asset('images/picture5.jpg') }}" alt="Badminton Club">
                 <h3>Badminton Club</h3>
-                <p>Lee Chong Wei academy.</p>
+                <p>Lee academy.</p>
             </a>
 
             <a href="/clubs/basketball" class="club-card">
