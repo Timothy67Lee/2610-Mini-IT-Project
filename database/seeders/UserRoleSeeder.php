@@ -1,17 +1,11 @@
 <?php
-
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\UserRole;
 use Illuminate\Database\Seeder;
 
-class UserRoleSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
+class UserRoleSeeder extends Seeder {
+    public function run(): void {
         $roles = [
             ['name' => 'member', 'label' => 'Member', 'sort_order' => 1],
             ['name' => 'admin', 'label' => 'Admin', 'sort_order' => 2],
