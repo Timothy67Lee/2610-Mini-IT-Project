@@ -6,12 +6,15 @@
     <link rel="stylesheet" href="{{ asset('css/log-in.css') }}">
 </head>
 <body>
+    <img src="images/csrw-placeholder-1.jpeg">
     <form action="log-in.blade.php" method="GET">
+        <h2>Log In</h2>
         <label for="Email">Email</label><br>
         <input type="text" name="Email"><br>
         <label for="Password">Password</label><br>
         <input type="text" name = "Password"><br>
-        <input type="submit" value="Log In"><br>
+        <a href="forgot-password.blade.php" id = "forgot-pass">Forgot Password</a><br>
+        <input type="submit" value="Log In" id="log-in-btn"><br>
     </form>
 </body>
 </html>
