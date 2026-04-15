@@ -12,6 +12,8 @@
      <h2>Explore Our Clubs</h2>
     </header>
 
+
+    <!-- Club cards section -->
     <div class="club-grid">
 
             <a href="/clubs/drama" class="club-card">
@@ -41,7 +43,7 @@
             <a href="/clubs/badminton" class="club-card">
                 <img src="{{ asset('images/picture5.jpg') }}" alt="Badminton Club">
                 <h3>Badminton Club</h3>
-                <p>Lee academy.</p>
+                <p>Lee Chong Wei academy.</p>
             </a>
 
             <a href="/clubs/basketball" class="club-card">
@@ -51,6 +53,27 @@
             </a>
 
     </div>
+
+    <!--Posts feed section -->
+    <section class="post-feed">
+        <h2>Latest Posts</h2>
+        @foreach($posts as $post)
+
+        <article class="post-card">
+            <h3 class="post-title">{{ $post->title }}</h3>
+            <p class="post-content">{{ $post->content }}</p>
+
+
+            @if($post->image)
+            <img class="post-image"  src="{{ asset('storage/' .$post->image) }}" alt="{{ $post->title }}">
+            @endif
+
+            <small class="post-meta">Posted by: {{ $post->club->name }}</small>
+        </article>
+        @endforeach   
+     </section>
+
+     
 
     <footer>
         <p> 2026 UNIVERSITY CLUBS </p>
