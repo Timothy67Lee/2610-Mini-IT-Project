@@ -8,13 +8,11 @@ use Illuminate\Http\Request;
 
 class ClubController extends Controller
 {
-    public function index()
+    public function show($club)
     {
-        # Fetch all the clubs with their posts
-        $posts = Post::with('club')->latest()->get();
+       
+    return "This is the {$club} club page!";
 
-        # Pass data to the homepage view
-        return view('index', compact('posts'));
     }
     //
 }

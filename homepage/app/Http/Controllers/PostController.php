@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Post;
 class PostController extends Controller
-{
-    /**
+{     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $posts = Post::with('club')->latest()->get();
+        return view('index', compact('posts'));
         //
     }
 
@@ -19,6 +20,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        return view('post-create');
         //
     }
 
@@ -27,6 +29,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content'=> 'required|string',
+            'club_id' => 'required|exists:club_id',
+            'image' => 'nullable|image| max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('posts', 'public');
+
+        }
+
+        Post::create($validated);
+
+        return redirect('/')->with('success',' Post Created Successfully');
         //
     }
 
@@ -43,7 +60,9 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::findorFail($id);
+        return view('posts.edit', compact('post'));
+        
     }
 
     /**
@@ -51,7 +70,22 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $post = Post::findorFail($id);
+        
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'nullable|image|max_2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validate['image'] = $request->file('image')->store('posts', 'public');
+    }
+
+    $post->update($validated);
+
+    return redirect('/')->with('success', 'Post updates successfully!!!');
+
     }
 
     /**
@@ -59,6 +93,11 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::findorFail($id);
+        $post ->delete();
+        
+         return redirect('/')->with('success', 'Post Deleted Successfully!');
     }
 }
+
+
