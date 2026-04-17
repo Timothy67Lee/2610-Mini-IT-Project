@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{{ asset('css/log-in.css') }}">
 </head>
 <body>
-    <img src="images/csrw-placeholder-1.jpeg">
     <form action="log-in.blade.php" method="GET">
         <h2>Log In</h2>
         <label for="Email">Email</label><br>

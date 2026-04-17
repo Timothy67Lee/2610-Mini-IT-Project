@@ -6,7 +6,7 @@ Route::get('/', function () {
     return view('log-in');
 });
 
-Route::get('/log-in', function () {
+Route::get('/log-in.blade.php', function () {
     return view('log-in');
 });
 
