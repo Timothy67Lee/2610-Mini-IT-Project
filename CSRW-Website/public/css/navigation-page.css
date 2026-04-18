@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    max-width: 100%;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 90%;
+    margin: 0 auto;
+    padding: 10% 0;
+}
+
+.container > img{
+    height: 300px;
+    object-fit: cover;  
+}
+
+.container img {
+    transition: 1s;
+    filter: brightness(40%);
+    width: 100%;
+}
+
+.container img:hover {
+    transition: 1s;
+    filter: brightness(100%);
+}
