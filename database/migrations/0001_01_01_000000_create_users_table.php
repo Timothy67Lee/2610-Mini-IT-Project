@@ -17,10 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('role_id')->constrained('user_roles')->onDelete('restrict')
-            $table->foreignId('role_id')->default(1);  // Assume ID 1 = member
-            $table->foreignId('status_id')->constrained('user_statuses')->default(1);  // ID 1 = active
-            $table->foreignId('verification_id')->constrained('verifications')->default(3);  // ID 3 = unverified
+            $table->string('role')->default('member');  
+            $table->string('status')->default('active');      // 'active', 'pending', 'banned'
+            $table->string('verification')->default('unverified');
             $table->rememberToken();
             $table->timestamps();
         });
