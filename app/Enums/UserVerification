@@ -1,3 +1,4 @@
+// app/Enums/UserVerification.php
 <?php
 
 namespace App\Enums;
