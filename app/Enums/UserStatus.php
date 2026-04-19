@@ -1,4 +1,3 @@
-// app/Enums/UserStatus.php
 <?php
 
 namespace App\Enums;
