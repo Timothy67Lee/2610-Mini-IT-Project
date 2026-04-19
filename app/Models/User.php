@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-use App\Enums\UserRole;   // 👈 import enum here (only once)
+use App\Enums\UserRole;   // <- import enum 
+use App\Enums\UserStatus;
+use App\Enums\UserVerification;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -28,9 +30,11 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
 
-            // 👇 add your enum casts here
-            'role'        => UserRole::class,       // enum cast
-            'status'      => 'string',              // or use its own enum later
-            'verification'=> 'string',              // or use its own enum 
+            'role'        => UserRole::class,
+            'status'      => UserStatus::class,
+            'verification'=> UserVerification::class,
+        ];
+    }
+}
