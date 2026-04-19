@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post-create');
+        return view('posts.create');
         //
     }
 
@@ -32,12 +32,13 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content'=> 'required|string',
-            'club_id' => 'required|exists:club_id',
-            'image' => 'nullable|image| max:2048',
+            'club_id' => 'required|exists:clubs,id',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('posts', 'public');
+           $validated['image'] = $request->file('image')->store('posts', 'public');
+
 
         }
 
@@ -58,42 +59,42 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        $post = Post::findorFail($id);
-        return view('posts.edit', compact('post'));
-        
-    }
+   public function edit(Post $post)
+{
+    return view('posts.edit', compact('post'));
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $post = Post::findorFail($id);
-        
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'image' => 'nullable|image|max_2048',
-        ]);
+   public function update(Request $request, Post $post)
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'content' => 'required|string',
+        'image' => 'nullable|image|max:2048',
+    ]);
 
-        if ($request->hasFile('image')) {
-            $validate['image'] = $request->file('image')->store('posts', 'public');
+    if ($request->hasFile('image')) {
+        $path = $request->file('image')->store('posts', 'public');
+        $validated['image'] = $path;
     }
 
     $post->update($validated);
-
-    return redirect('/')->with('success', 'Post updates successfully!!!');
+    {
+    return redirect()->route('clubs.show', $post->club->id)
+                 ->with('success', 'Post updated successfully!');
 
     }
+}
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        $post = Post::findorFail($id);
+        $post = Post::findOrFail($id);
         $post ->delete();
         
          return redirect('/')->with('success', 'Post Deleted Successfully!');

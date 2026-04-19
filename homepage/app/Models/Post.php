@@ -11,7 +11,7 @@ class Post extends Model
     use HasFactory;
 
     # Allowing clubs to post posts
-    protected $fillable = ['club_id', 'title', 'content','image'];
+     protected $fillable = ['title', 'content', 'image', 'club_id'];
     
    # Relationship: 1:M each post belongs to one club
    public function club()
