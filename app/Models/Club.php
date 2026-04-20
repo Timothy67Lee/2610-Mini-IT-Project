@@ -67,4 +67,20 @@ class Club extends Model
     {
         return $this->owner->hasVerifiedEmail();
     }
+
+    /**
+     * A club is active if it has an owner and hasn't been soft-deleted.
+     */
+    public function isActive(): bool
+    {
+        return !is_null($this->owner_id);
+    }
+
+    /**
+     * A club is active if it has an owner and hasn't been soft-deleted.
+     */
+    public function isActive(): bool
+    {
+        return !is_null($this->owner_id);
+    }
 }
