@@ -11,9 +11,9 @@ enum UserStatus: string
     public function label(): string
     {
         return match ($this) {
-            self::ACTIVE => 'Active',
-            self::PENDING  => 'Pending',
-            self::BANNED  => 'Banned',
+            self::ACTIVE => 'Active User',
+            self::PENDING  => 'Pending Approval',
+            self::BANNED  => 'Account Banned',
         };
     }
 }
