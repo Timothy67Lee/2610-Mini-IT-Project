@@ -15,7 +15,9 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->enum('category', array_column(ClubCategory::cases(), 'value'))
                   ->default(ClubCategory::STUDENT->value);
-            $table->foreignId('owner_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('owner_id')->constrained('users')->restrictOnDelete();
+            $table->softDeletes();  // softDeletes also in Models\Club to avoid club owner accidentally delete the 
+                                    // club including the post and member
             $table->timestamps();
         });
     }
