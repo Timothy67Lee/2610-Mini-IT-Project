@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-use App\Models\User;
-use App\Models\Event;
-use App\Models\Membership;
+use App\Enums\ClubCategory; // Clean up imports
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Club extends Model
 {
@@ -16,22 +16,54 @@ class Club extends Model
     protected $fillable = [
         'name',
         'description',
+        'category', // Added this! Otherwise, you can't mass-assign categories.
         'owner_id',
     ];
 
-    public function memberships()
+    protected $casts = [
+        'category' => ClubCategory::class,
+    ];
+
+    /**
+     * The user who created/owns the club.
+     */
+    public function owner(): BelongsTo
     {
-        return $this->hasMany(Membership::class, 'club_id', 'id');
+        return $this->belongsTo(User::class, 'owner_id');
     }
 
-    public function users()
+    /**
+     * Direct access to membership records.
+     */
+    public function memberships(): HasMany
+    {
+        return $this->hasMany(Membership::class, 'club_id');
+    }
+
+    /**
+     * The users that belong to the club.
+     */
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'memberships', 'club_id', 'user_id')
-                    ->withPivot('role', 'status', 'verification', 'created_at');
+                    ->withPivot('role', 'status', 'verification')
+                    ->withTimestamps(); // Use this if your pivot table has created_at/updated_at
     }
 
-    public function events()
+    /**
+     * Relationship: Events hosted by this club.
+     */
+    public function events(): HasMany
     {
-        return $this->hasMany(Event::class, 'club_id', 'id');
+        return $this->hasMany(Event::class, 'club_id');
+    }
+
+    /**
+     * Helper: Check if the club owner is email-verified.
+     * Useful for UI logic (e.g., hiding unverified clubs).
+     */
+    public function hasVerifiedOwner(): bool
+    {
+        return $this->owner->hasVerifiedEmail();
     }
 }

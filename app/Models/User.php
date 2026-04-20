@@ -57,6 +57,10 @@ class User extends Authenticatable implements MustVerifyEmail
                     ->withTimestamps(); // Good practice if your pivot table has timestamps
     }
 
+    public function ownedClubs(): HasMany
+    {
+        return $this->hasMany(Club::class, 'owner_id');
+    }
     /**
      * Get all events for all clubs the user is in.
      * * Note: This returns a Collection. For larger projects, 

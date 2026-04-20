@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ClubCategory;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,6 +13,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->enum('category', array_column(ClubCategory::cases(), 'value'))
+                  ->default(ClubCategory::STUDENT->value);
             $table->foreignId('owner_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
