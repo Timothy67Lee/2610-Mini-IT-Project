@@ -46,17 +46,19 @@ class User extends Authenticatable
 
     public function memberships()
     {
-        return $this->hasMany(Membership::class);
+        return $this->hasMany(Membership::class, 'user_id');
     }
 
     public function clubs()
-{
-    return $this->belongsToMany(Club::class, 'memberships')
-                ->withPivot('role', 'created_at');
-}
+    {
+        return $this->belongsToMany(Club::class, 'memberships')
+                    ->withPivot('role', 'created_at');
+    }
 
     public function events()
     {
-        return $this->hasManyThrough(Event::class, Club::class, 'user_id', 'club_id');
+        return $this->clubs->flatMap(function ($club) {
+            return $club->events;
+        });
     }
 }

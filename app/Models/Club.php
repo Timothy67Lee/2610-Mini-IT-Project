@@ -17,14 +17,15 @@ class Club extends Model
 
     public function memberships()
     {
-        return $this->hasMany(Membership::class); // A Club has many Membership rows linked to it (via club_id)
+        return $this->hasMany(Membership::class, 'club_id');  // A Club has many Membership rows linked to it (via club_id)
     }
 
     public function users()
-{
-    return $this->belongsToMany(User::class, 'memberships')
-                ->withPivot('role', 'created_at');
-}
+    {
+        return $this->belongsToMany(User::class, 'memberships', 'club_id', 'user_id')
+                    ->withPivot('role', 'status', 'verification', 'created_at');
+    }
+
 
     public function events()
     {

@@ -21,11 +21,11 @@ class Membership extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function club()
     {
-        return $this->belongsTo(Club::class);
+        return $this->belongsTo(Club::class, 'club_id');
     }
 }

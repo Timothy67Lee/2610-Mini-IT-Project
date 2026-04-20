@@ -15,6 +15,6 @@ class Event extends Model
 
     public function club()
     {
-        return $this->belongsTo(Club::class);  // Each Event belongs to one Club (via club_id)
+        return $this->belongsTo(Club::class, 'club_id');  // Each Event belongs to one Club (via club_id)
     }
 }
