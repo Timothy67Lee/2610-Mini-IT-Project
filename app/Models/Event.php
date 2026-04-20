@@ -5,8 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+// app/Models/Event.php
+
+use App\Models\Club;
+
 class Event extends Model
 {
-    /** @use HasFactory<\Database\Factories\EventFactory> */
     use HasFactory;
+
+    public function club()
+    {
+        return $this->belongsTo(Club::class);  // Each Event belongs to one Club (via club_id)
+    }
 }
