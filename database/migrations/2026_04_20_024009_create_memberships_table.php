@@ -9,13 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('memberships', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+    public function up()
+{
+    Schema::create('memberships', function (Blueprint $table) {
+        $table->id();
+
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->foreignId('club_id')->constrained()->onDelete('cascade');
+
+        $table->string('role')->nullable();      // 👈 this line is missing
+        $table->timestamps();                    // includes created_at, updated_at
+    });
+}
 
     /**
      * Reverse the migrations.
