@@ -3,8 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-// app/Models/Membership.php
+use Illuminate\Database\Eloquent\Factories\HasFactory; // 👈 this is the correct HasFactory
 
 use App\Models\User;
 use App\Models\Club;
@@ -17,7 +16,7 @@ class Membership extends Model
         'user_id',
         'club_id',
         'role',       // e.g., 'member', 'admin'
-        'created_at', // if Laravel automatically sets it
+        'created_at', // Laravel usually sets this automatically, so you can remove if you want
     ];
 
     public function user()
@@ -29,7 +28,4 @@ class Membership extends Model
     {
         return $this->belongsTo(Club::class);
     }
-
-    // Each Membership row belongs to one user and one club
-
 }
