@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum UserStatus: string
 {
-    case ACTIVE = 'actve';
+    case ACTIVE = 'active';
     case PENDING  = 'pending';
     case BANNED  = 'banned';
 
