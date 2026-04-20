@@ -50,10 +50,10 @@ class User extends Authenticatable
     }
 
     public function clubs()
-    {
-        return $this->belongsToMany(Club::class, 'memberships')
-                    ->withPivot('role', 'created_at');
-    }
+{
+    return $this->belongsToMany(Club::class, 'memberships')
+                ->withPivot('role', 'created_at');
+}
 
     public function events()
     {

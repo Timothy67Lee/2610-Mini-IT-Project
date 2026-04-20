@@ -21,10 +21,10 @@ class Club extends Model
     }
 
     public function users()
-    {
-        return $this->belongsToMany(User::class, 'memberships')  // A Club has many Users, but through the memberships table.
-                    ->withPivot('role', 'created_at');
-    }
+{
+    return $this->belongsToMany(User::class, 'memberships')
+                ->withPivot('role', 'created_at');
+}
 
     public function events()
     {
