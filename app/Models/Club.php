@@ -5,8 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-// app/Models/Club.php
-
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Membership;
@@ -15,9 +13,15 @@ class Club extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'owner_id',
+    ];
+
     public function memberships()
     {
-        return $this->hasMany(Membership::class, 'club_id');  // A Club has many Membership rows linked to it (via club_id)
+        return $this->hasMany(Membership::class, 'club_id', 'id');
     }
 
     public function users()
@@ -26,9 +30,8 @@ class Club extends Model
                     ->withPivot('role', 'status', 'verification', 'created_at');
     }
 
-
     public function events()
     {
-        return $this->hasMany(Event::class); // A Club has many Events (one event → one club)
+        return $this->hasMany(Event::class, 'club_id', 'id');
     }
 }

@@ -15,8 +15,9 @@ class Membership extends Model
     protected $fillable = [
         'user_id',
         'club_id',
-        'role',       // e.g., 'member', 'admin'
-        'created_at', // Laravel usually sets this automatically, so you can remove if you want
+        'role',
+        'status',
+        'verification',
     ];
 
     public function user()

@@ -15,11 +15,9 @@ return new class extends Migration
         $table->id();
         $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         $table->foreignId('club_id')->constrained()->cascadeOnDelete();
-
-        $table->string('role')->nullable();      // Option B: role as string
-
-        $table->foreignId('status_id')->default(1)->constrained('user_statuses');
-        $table->foreignId('verification_id')->default(1)->constrained('verification');
+        $table->string('role')->nullable();
+        $table->string('status')->default('active');
+        $table->string('verification')->default('unverified');
         $table->timestamps();
     });
 }
