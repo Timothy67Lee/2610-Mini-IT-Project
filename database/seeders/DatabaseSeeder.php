@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // 2. Create an UNVERIFIED User (to show the feature works)
+        // 2. Create an UNVERIFIED User
         User::updateOrCreate(
             ['email' => 'student@example.com'],
             [
