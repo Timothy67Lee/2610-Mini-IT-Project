@@ -8,15 +8,7 @@
 <body>
     <h1>Clubs and Societies in MMU</h1>
     <div class="container">
-        <a><p>MMUsic Club</p><img src="images/1.jpg"></a>
-        <a><p>IT Society</p><img src="images/2.jpg"></a>
-        <a><p>Badminton Club</p><img src="images/3.png"></a>
-        <a><p>Cyber Fitness Club</p><img src="images/4.png"></a>
-        <a><p>Google Developer's Club</p><img src="images/5.png"></a>
-        <a><p>Chess Club</p><img src="images/6.jpg"></a>
-        <a><p>Rentak Dance Club</p><img src="images/7.jpg"></a>
-        <a><p>Chinese Language Society</p><img src="images/8.jpg"></a>
-        <a><p>Sudanese Cultural Society</p><img src="images/9.jpg"></a>
+        <a href="{{route('club.show', $club -> $id)}}"><p>{{$club -> name}}</p><img src="{{asset ('images/'. $club -> $profile_picture)}}"></a>
 
     </div>
     
