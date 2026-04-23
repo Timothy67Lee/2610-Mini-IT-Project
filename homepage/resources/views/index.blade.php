@@ -4,56 +4,57 @@
     <meta charset="UTF-8">
     <title>University Clubs</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
 </head>
 <body>
 
     <header>
-     <h2>Explore Our Clubs</h2>
+        <h2>Explore Our Clubs</h2>
     </header>
 
+    <!-- Club cards section -->
     <div class="club-grid">
-
-            <a href="/clubs/drama" class="club-card">
-                <img src="{{ asset('images/picture2.jpg') }}" alt="Drama Club">
-                <h3>Drama Club</h3>
-                <p>Explore your creativity through acting and stage performance.</p>
-            </a>
-
-            <a href="/clubs/chess" class="club-card">
-                <img src="{{ asset('images/picture1.jpg') }}" alt="Chess Club">
-                <h3>Chess Club</h3>
-                <p>Sharpen your mind with weekly chess matches and tournaments.</p>
-            </a>
-
-            <a href="/clubs/music" class="club-card">
-                <img src="{{ asset('images/picture3.jpg') }}" alt="Music Club">
-                <h3>Music Club</h3>
-                <p>Bring out the musical talent in you in our club.</p>
-            </a>
-
-            <a href="/clubs/football" class="club-card">
-                <img src="{{ asset('images/picture4.jpg') }}" alt="Football Club"> 
-                <h3>Football Club</h3>
-                <p>You got Ball knowledge? Join the Football Club.</p>
-            </a>
-
-            <a href="/clubs/badminton" class="club-card">
-                <img src="{{ asset('images/picture5.jpg') }}" alt="Badminton Club">
-                <h3>Badminton Club</h3>
-                <p>Lee Chong Wei academy.</p>
-            </a>
-
-            <a href="/clubs/basketball" class="club-card">
-                <img src="{{ asset('images/picture6.jpg') }}" alt="Basketball Club"> 
-                <h3>Basketball Club</h3>
-                <p>Practice drills and play competitive games with us.</p>
-            </a>
-
+        @foreach($clubs as $club)
+            <div class="club-card">
+                <!-- Card clickable link -->
+                <a href="{{ route('clubs.show', $club->id) }}" class="club-link">
+                    <img src="{{ asset('images/' . $club->profile_picture) }}" alt="{{ $club->name }}">
+                    <h3>{{ $club->name }}</h3>
+                    <p>{{ $club->description }}</p>
+                </a>
+            </div>
+        @endforeach
     </div>
+            
+    <!-- Homepage Feed Section -->
+    <section class="post-feed">
+        <h2>Latest Posts</h2>
+        @foreach($posts as $post)
+            <article class="post-card max-w-xs mx-auto mb-8 bg-white shadow-lg rounded-lg overflow-hidden">
+                <!-- Club name on top -->
+                <div class="p-2 border-b text-center">
+                    <h3 class="font-bold text-center">{{ $post->club->name }}</h3>
+                </div>
+
+                <!-- Image in the middle -->
+                @if($post->image)
+                    <div class="flex justify-center">
+                        <img src="{{ asset('storage/' .$post->image) }}" 
+                             alt="{{ $post->title }}" 
+                             class="post-image my-4">
+                    </div>
+                @endif
+
+                <!-- Title + description below -->
+                <div class="p-4 text-center">
+                    <h4 class="text-md font-semibold mb-2">{{ $post->title }}</h4>
+                    <p class="text-gray-600">{{ $post->content }}</p>
+                </div>
+            </article>
+        @endforeach
+    </section>
 
     <footer>
-        <p> 2026 UNIVERSITY CLUBS </p>
+        <p>2026 UNIVERSITY CLUBS</p>
     </footer>
     
 </body>
