@@ -8,9 +8,16 @@
 <body>
     <h1>Clubs and Societies in MMU</h1>
     <div class="container">
-        <a href="{{route('club.show', $club -> $id)}}"><p>{{$club -> name}}</p><img src="{{asset ('images/'. $club -> $profile_picture)}}"></a>
+        <a href="clubs/{{ $clubs[0]["name"]}}">
+            <p>{{ $clubs[0]["name"] }}</p>
+            <img src="{{ $clubs[0]["profile_picture"] }}" alt="{{ $clubs[0]["name"] }}">
+        </a>
+        
 
     </div>
     
 </body>
+
+
 </html>
+
