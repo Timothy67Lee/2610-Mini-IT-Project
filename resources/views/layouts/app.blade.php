@@ -33,7 +33,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>CREATED BY UNCLE ROWEN</p>
+        <p>CREATED BY ME</p>
     </footer>
 </body>
 </html>

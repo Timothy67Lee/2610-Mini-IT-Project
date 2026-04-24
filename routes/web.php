@@ -3,7 +3,7 @@
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\PostController;
 
-// Homepage → clubs + posts
+
 Route::get('/', [ClubController::class, 'index'])->name('clubs.index');
 
 // Club detail
