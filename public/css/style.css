@@ -1,0 +1,381 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 20px;
+    padding-top: 100px;
+    padding-bottom: 60px;
+}
+
+.club-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.club-card {
+    background: grey;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,1);
+    padding: 20px;
+    margin: 10px;
+    text-align:center;
+    display: block;
+    text-decoration: none;
+}
+
+.club-card h3 {
+    margin: 10px;
+    font-size: 20px;
+    color: black;
+}
+
+.club-card p {
+    font-size: 14px;
+    color: black;
+}
+
+.club-card img {
+    width: 100px;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+}
+
+.club-card:hover {
+    box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+    background: yellow;
+}
+
+header {
+    width: 100%;
+    background-color: grey;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    z-index: 1000; /* keeps header above content */
+}
+
+.sub-header {
+    background-color: grey; /* light grey strip */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid grey;
+    text-align: center;
+}
+
+.sub-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: purple;
+}
+
+
+
+footer {
+    width: 100%;
+    background-color: grey;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.post-card h3,
+.post-card p,
+.post-card h4,
+.post-card small {
+    text-align: center;
+    display: block;
+    margin: 8px auto;
+}
+
+.post-card {
+    max-width: 350px;          /* keeps card compact */
+    margin: 0 auto 40px;       /* centers card + spacing */
+    background: purple;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    overflow: hidden;
+    text-align: center;        /* force all text inside to center */
+}
+
+/* Page header block */
+/* Page header block */
+.page-header {
+    background: grey;
+    color: white;
+    text-align: center;
+    padding: 30px 0;       /* reduced padding */
+    margin: 0 0 3.0rem 0;  /* spacing below header */
+}
+
+.page-header h1 {
+    font-size: 1.6rem;     /* smaller font size */
+    font-weight: 600;      /* slightly lighter weight */
+    margin: 0;
+}
+
+
+/* Club card header (make it grey too) */
+.club-card-header {
+    background: grey;     /* changed from white/light to grey */
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;  /* spacing before posts */
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.club-image-rect {
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+}
+
+.club-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: white; /* text visible on grey */
+}
+
+.club-description {
+    color: white; /* description visible on grey */
+    margin-bottom: 1rem;
+}
+
+.posts-title {
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+
+
+.post-card:hover {
+    background: hotpink;
+}
+.club-name-box {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.club-name {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.post-card img.post-image {
+    width: 220px !important;   /* override global img rules */
+    height: 160px !important;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    margin: 1rem auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.post-content {
+    padding: 16px;
+}
+
+.btn {
+    display:inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1 ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-green {
+    background-color: green;
+    color: white;
+}
+
+.btn-blue {
+    background-color: blue;
+    color: white;
+}
+
+.btn-red {
+    background-color: red;
+    color: white;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.form-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.form-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.styled-form .form-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.styled-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #444;
+}
+
+.styled-form input[type="text"],
+.styled-form input[type="file"],
+.styled-form textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.styled-form input:focus,
+.styled-form textarea:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+.btn-submit {
+    display: inline-block;
+    width: 100%;
+    padding: 0.8rem;
+    background: linear-gradient(90deg, #2563eb, #1e40af);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, #1e40af, #2563eb);
+}
+
+/* Shared form styles already exist from create form */
+.edit-form {
+    background: #fff7f0; /* light orange background */
+    border: 2px solid #f97316; /* orange border */
+}
+
+.btn-update {
+    display: inline-block;
+    width: 100%;
+    padding: 0.8rem;
+    background: linear-gradient(90deg, #f97316, #ea580c); /* orange gradient */
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.btn-update:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, #ea580c, #f97316);
+}
+
+.post-image {
+    width: 220px;
+    height: 160px;     
+    object-fit: cover;  
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    display: block;
+    margin: 0.5rem auto; 
+}
+
+
+.club-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* Header Nav Bar */
+.navbar {
+    width: 100%;
+    background-color: red; 
+    color: white;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 12px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px; 
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;   /* fixed box size for icons */
+    height: 40px;
+    background-color: #333;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1.2rem; /* makes icons clear */
+    transition: background-color 0.2s ease;
+}
+
+.nav-links a:hover {
+    background-color: #555;
+}
+
+
+
+

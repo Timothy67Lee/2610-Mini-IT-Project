@@ -15,6 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+<<<<<<< HEAD
+=======
+{
+    $this->call(ClubSeeder::class);
+}
+
+>>>>>>> homepage
         // User::factory(10)->create();
 
         User::factory()->create([
