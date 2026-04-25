@@ -7,17 +7,30 @@
 </head>
 <body>
     <h1>Clubs and Societies in MMU</h1>
-    <div class="container">
+        <h2>Art Clubs</h2>
+        
         @foreach ($clubs as $club)
+        @if ($club["category"] == "Arts Clubs")
+        <div class="container">
           <a href="clubs/{{ $club["name"]}}">
             <p>{{ $club["name"] }}</p>
             <img src="{{ $club["profile_picture"] }}" alt="{{ $club["name"] }}">
         </a>  
+        </div>
+        @endif
         @endforeach
+        
+        <h2>Community Clubs</h2>
+        <h2>Religious Clubs</h2>
+        <h2>Games / Entertainment Clubs</h2>
+        <h2>Cultural Clubs</h2>
+        <h2>Tech Clubs</h2>
+        <h2>Recreational / Physical Activities Clubs</h2>
+        
         
         
 
-    </div>
+
     
 </body>
 
