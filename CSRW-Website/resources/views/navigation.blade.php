@@ -8,24 +8,101 @@
 <body>
     <h1>Clubs and Societies in MMU</h1>
         <h2>Art Clubs</h2>
-        
+        <div class="container">
         @foreach ($clubs as $club)
         @if ($club["category"] == "Arts Clubs")
-        <div class="container">
+        
           <a href="clubs/{{ $club["name"]}}">
             <p>{{ $club["name"] }}</p>
             <img src="{{ $club["profile_picture"] }}" alt="{{ $club["name"] }}">
         </a>  
-        </div>
+        
         @endif
         @endforeach
+        </div>
         
         <h2>Community Clubs</h2>
+        <div class="container">
+        @foreach ($clubs as $club)
+        @if ($club["category"] == "Community Clubs")
+        
+          <a href="clubs/{{ $club["name"]}}">
+            <p>{{ $club["name"] }}</p>
+            <img src="{{ $club["profile_picture"] }}" alt="{{ $club["name"] }}">
+        </a>  
+        
+        @endif
+        @endforeach
+        </div>
+
         <h2>Religious Clubs</h2>
+        <div class="container">
+        @foreach ($clubs as $club)
+        @if ($club["category"] == "Religious Clubs")
+        >
+          <a href="clubs/{{ $club["name"]}}">
+            <p>{{ $club["name"] }}</p>
+            <img src="{{ $club["profile_picture"] }}" alt="{{ $club["name"] }}">
+        </a>  
+        
+        @endif
+        @endforeach
+        </div>
+
         <h2>Games / Entertainment Clubs</h2>
+        <div class="container">
+        @foreach ($clubs as $club)
+        @if ($club["category"] == "Games / Entertainment Clubs")
+        
+          <a href="clubs/{{ $club["name"]}}">
+            <p>{{ $club["name"] }}</p>
+            <img src="{{ $club["profile_picture"] }}" alt="{{ $club["name"] }}">
+        </a>  
+        
+        @endif
+        @endforeach
+        </div>
+
         <h2>Cultural Clubs</h2>
+        <div class="container">
+        @foreach ($clubs as $club)
+        @if ($club["category"] == "Cultural Clubs")
+        
+          <a href="clubs/{{ $club["name"]}}">
+            <p>{{ $club["name"] }}</p>
+            <img src="{{ $club["profile_picture"] }}" alt="{{ $club["name"] }}">
+        </a>  
+        
+        @endif
+        @endforeach
+        </div>
+
         <h2>Tech Clubs</h2>
+        <div class="container">
+        @foreach ($clubs as $club)
+        @if ($club["category"] == "Tech Clubs")
+        
+          <a href="clubs/{{ $club["name"]}}">
+            <p>{{ $club["name"] }}</p>
+            <img src="{{ $club["profile_picture"] }}" alt="{{ $club["name"] }}">
+        </a>  
+        
+        @endif
+        @endforeach
+        </div>
         <h2>Recreational / Physical Activities Clubs</h2>
+        <div class="container">
+        @foreach ($clubs as $club)
+        @if ($club["category"] == "Recreational / Physical Activities Clubs")
+        
+          <a href="clubs/{{ $club["name"]}}">
+            <p>{{ $club["name"] }}</p>
+            <img src="{{ $club["profile_picture"] }}" alt="{{ $club["name"] }}">
+        </a>  
+        
+        @endif
+        @endforeach
+        </div>
         
         
         
