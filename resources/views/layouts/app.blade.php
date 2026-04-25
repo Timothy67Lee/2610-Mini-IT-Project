@@ -35,5 +35,7 @@
     <footer>
         <p>CREATED BY ME</p>
     </footer>
+
+    @stack('scripts')
 </body>
 </html>

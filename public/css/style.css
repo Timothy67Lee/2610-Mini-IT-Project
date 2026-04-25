@@ -64,7 +64,7 @@ header {
 }
 
 .sub-header {
-    background-color: grey; /* light grey strip */
+    background-color: grey; 
     padding: 20px;
     margin-bottom: 20px;
     border-bottom: 2px solid grey;
@@ -81,14 +81,14 @@ header {
 
 
 footer {
-    width: 100%;
-    background-color: grey;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    position: fixed;
+    position: fixed;   
     bottom: 0;
     left: 0;
+    width: 100%;       
+    background-color: grey; 
+    text-align: center;
+    padding: 15px;
+    z-index: 1000;     
 }
 
 .post-card h3,
@@ -101,38 +101,37 @@ footer {
 }
 
 .post-card {
-    max-width: 350px;          /* keeps card compact */
-    margin: 0 auto 40px;       /* centers card + spacing */
+    max-width: 350px;          
+    margin: 0 auto 40px;       
     background: purple;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     overflow: hidden;
-    text-align: center;        /* force all text inside to center */
+    text-align: center;        
 }
 
-/* Page header block */
-/* Page header block */
+
 .page-header {
     background: grey;
     color: white;
     text-align: center;
-    padding: 30px 0;       /* reduced padding */
-    margin: 0 0 3.0rem 0;  /* spacing below header */
+    padding: 30px 0;       
+    margin: 0 0 3.0rem 0;  
 }
 
 .page-header h1 {
-    font-size: 1.6rem;     /* smaller font size */
-    font-weight: 600;      /* slightly lighter weight */
+    font-size: 1.6rem;     
+    font-weight: 600;      
     margin: 0;
 }
 
 
-/* Club card header (make it grey too) */
+
 .club-card-header {
-    background: grey;     /* changed from white/light to grey */
+    background: grey;     
     padding: 2rem;
     text-align: center;
-    margin-bottom: 2rem;  /* spacing before posts */
+    margin-bottom: 2rem;  
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
@@ -297,10 +296,10 @@ footer {
     background: linear-gradient(90deg, #1e40af, #2563eb);
 }
 
-/* Shared form styles already exist from create form */
+
 .edit-form {
-    background: #fff7f0; /* light orange background */
-    border: 2px solid #f97316; /* orange border */
+    background: #fff7f0; 
+    border: 2px solid #f97316; 
 }
 
 .btn-update {
@@ -362,13 +361,13 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;   /* fixed box size for icons */
+    width: 60px;   
     height: 40px;
     background-color: #333;
     color: white;
     border-radius: 6px;
     text-decoration: none;
-    font-size: 1.2rem; /* makes icons clear */
+    font-size: 1.2rem; 
     transition: background-color 0.2s ease;
 }
 
@@ -378,11 +377,49 @@ footer {
 
 
 #scrollTopBtn {
-  cursor: pointer;
-  transition: opacity 0.3s ease;
+    position: fixed;
+    bottom: 120px;        /* sits above footer */
+    right: 40px;
+    background-color: #2563eb; /* blue */
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;      /* smaller text so it fits */
+    text-align: center;
+    padding: 120px 70px;  /* ✅ taller + a little wider */
+    z-index: 9999;
+
+    /* Tall upward arrow shape with wider shoulders */
+    clip-path: polygon(
+        50% 0%,   /* top point */
+        100% 28%, /* right slant */
+        72% 28%,  /* right shoulder */
+        72% 100%, /* bottom right */
+        28% 100%, /* bottom left */
+        28% 28%,  /* left shoulder */
+        0% 28%    /* left slant */
+    );
 }
-#scrollTopBtn.show {
-  display: block;
-  opacity: 1;
+
+#scrollTopBtn.hidden {
+    display: none;
 }
+
+/* Bounce animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-25px); }
+}
+
+#scrollTopBtn {
+    animation: bounce 1.5s infinite;
+}
+
+
+
+
+
+
+
 
