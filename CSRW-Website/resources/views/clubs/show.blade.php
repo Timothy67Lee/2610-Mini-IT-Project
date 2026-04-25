@@ -5,6 +5,6 @@
     <title>Loo Zhi Heng</title>
 </head>
 <body>
-    <p>I love my supreme leader {{$name}}</p>
+    <p>{{$name}}</p>
 </body>
 </html>

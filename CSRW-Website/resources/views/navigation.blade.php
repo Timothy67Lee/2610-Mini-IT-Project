@@ -8,10 +8,13 @@
 <body>
     <h1>Clubs and Societies in MMU</h1>
     <div class="container">
-        <a href="clubs/{{ $clubs[0]["name"]}}">
-            <p>{{ $clubs[0]["name"] }}</p>
-            <img src="{{ $clubs[0]["profile_picture"] }}" alt="{{ $clubs[0]["name"] }}">
-        </a>
+        @foreach ($clubs as $club)
+          <a href="clubs/{{ $club["name"]}}">
+            <p>{{ $club["name"] }}</p>
+            <img src="{{ $club["profile_picture"] }}" alt="{{ $club["name"] }}">
+        </a>  
+        @endforeach
+        
         
 
     </div>
