@@ -22,24 +22,51 @@
 
     <!-- Posts feed -->
     @forelse($posts as $post)
-        <div class="post-card">
-            <h3>{{ $post->title }}</h3>
-            <p>{{ $post->content }}</p>
 
-            @if($post->image)
-                <img src="{{ asset('storage/' . $post->image) }}" class="post-image">
-            @endif
+    <div class="post-card">
+    
+    <h3 class="post-title">{{ $post->title }}</h3>
 
-            <small>Posted in: {{ $post->club->name }}</small>
-        </div>
+    @if($post->image)
+        <img src="{{ asset('storage/' . $post->image) }}" class="post-image">
+    @endif
+
+    <p class="post-content">{{ $post->content }}</p>
+
+    <small class="post-meta">Posted in: {{ $post->club->name }}</small>
+</div>
+
     @empty
         <p>No posts yet.</p>
     @endforelse
 
     <!-- Scroll-to-top button -->
-<button id="scrollTopBtn" 
-        class="fixed bottom-6 right-6 bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hidden">
-    ↑
-</button>
+<button id="scrollTopBtn">LATEST POST</button>
+
+
+
 @endsection
+
+
+@push('scripts')
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const scrollBtn = document.getElementById("scrollTopBtn");
+
+    
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {  
+            scrollBtn.classList.remove("hidden");
+        } else {
+            scrollBtn.classList.add("hidden");
+        }
+    });
+
+    scrollBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+});
+</script>
+@endpush
+
 

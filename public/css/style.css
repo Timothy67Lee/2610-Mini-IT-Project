@@ -101,13 +101,41 @@ footer {
 }
 
 .post-card {
-    max-width: 350px;          
-    margin: 0 auto 40px;       
-    background: purple;
+    background-color: grey; /* grey */
+    padding: 20px;
+    margin: 20px auto;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    overflow: hidden;
-    text-align: center;        
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 700px;   /* wider card */
+    width: 100%;
+    text-align: center;
+}
+
+.post-image {
+    display: block;
+    margin: 0 auto;          /* centers horizontally */
+    width: 100%;             /* fills card width */
+    max-width: 400px;        /* ✅ controls how wide it can get */
+    height: auto;            /* keeps proportions, no crop */
+    object-fit: contain;     /* shows full image */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.post-content {
+    padding: 16px;
+    margin: 12px 0;
+}
+
+.post-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+
+.post-card:hover {
+    background: hotpink;
 }
 
 
@@ -156,17 +184,6 @@ footer {
     margin-bottom: 1rem;
 }
 
-.posts-title {
-    margin-top: 2rem;
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-
-
-
-.post-card:hover {
-    background: hotpink;
-}
 .club-name-box {
     padding: 10px;
     border-bottom: 1px solid #ddd;
@@ -181,19 +198,6 @@ footer {
     margin: 0;
 }
 
-.post-card img.post-image {
-    width: 220px !important;   /* override global img rules */
-    height: 160px !important;
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
-    margin: 1rem auto;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.post-content {
-    padding: 16px;
-}
 
 .btn {
     display:inline-block;
@@ -318,16 +322,6 @@ footer {
 .btn-update:hover {
     transform: translateY(-2px);
     background: linear-gradient(90deg, #ea580c, #f97316);
-}
-
-.post-image {
-    width: 220px;
-    height: 160px;     
-    object-fit: cover;  
-    border-radius: 8px; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    display: block;
-    margin: 0.5rem auto; 
 }
 
 
