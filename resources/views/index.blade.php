@@ -35,4 +35,11 @@
     @empty
         <p>No posts yet.</p>
     @endforelse
+
+    <!-- Scroll-to-top button -->
+<button id="scrollTopBtn" 
+        class="fixed bottom-6 right-6 bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hidden">
+    ↑
+</button>
 @endsection
+
