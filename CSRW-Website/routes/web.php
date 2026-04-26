@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/navigation', function(){
     $clubs = [
         ["name" => "MMUsic Club", "profile_picture" => "images/1.jpg", "id" => "1", "category" => "Arts Clubs"],
         ["name" => "Badminton Club", "profile_picture" => "images/2.jpg", "id" => "2", "category" => "Recreational / Physical Activities Clubs"],
@@ -24,6 +28,14 @@ Route::get('/clubs/{name}', function($name){
     return view('clubs.show', ["name" => $name]);
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-
+require __DIR__.'/auth.php';
