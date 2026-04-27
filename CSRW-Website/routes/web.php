@@ -18,6 +18,11 @@ Route::get('/navigation', function(){
         ["name" => "Chinese Language Society", "profile_picture" => "images/7.jpg", "id" => "7", "category" => "Cultural Clubs"],
         ["name" => "Sudanese Cultural Society", "profile_picture" => "images/8.jpg", "id" => "8", "category" => "Cultrual Clubs"],
         ["name" => "UPG Cyber", "profile_picture" => "images/9.jpg", "id" => "9", "category" => "Community Clubs"],
+        ["name" => "Buddhist Society", "profile_picture" => "images/10.jpg", "id" => "10", "category" => "Religious Clubs"],
+        ["name" => "MMU Esports", "profile_picture" => "images/11.jpeg", "id" => "11", "category" => "Games / Entertainment Clubs"],
+        ["name" => "TechGirls MMU", "profile_picture" => "images/12.png", "id" => "12", "category" => "Tech Clubs"],
+        ["name" => "Rentak Dance Club", "profile_picture" => "images/13.png", "id" => "13", "category" => "Arts Clubs"],
+
         
 
     ];
