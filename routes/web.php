@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/notifications', function () {
     return auth()->user()->notifications; // Or return a view
         })->name('notifications.index');
+    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 });
 
 require __DIR__.'/auth.php';
