@@ -21,6 +21,13 @@ class Club extends Model
         'owner_id',
     ];
 
+    // app/Models/Club.php
+    public function members()
+    {
+        // This assumes you have a pivot table named 'club_user'
+        return $this->belongsToMany(User::class);
+    }
+    
     protected $casts = [
         'category' => ClubCategory::class,
     ];
