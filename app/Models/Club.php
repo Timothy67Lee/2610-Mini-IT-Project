@@ -27,10 +27,15 @@ class Club extends Model
         // This assumes you have a pivot table named 'club_user'
         return $this->belongsToMany(User::class);
     }
-    
+
     protected $casts = [
         'category' => ClubCategory::class,
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 
     /**
      * The user who created/owns the club.
