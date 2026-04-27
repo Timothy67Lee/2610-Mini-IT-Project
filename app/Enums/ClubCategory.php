@@ -11,7 +11,6 @@ enum ClubCategory: string
     case INTERNATIONAL = 'international';
     case TECHNOLOGY = 'technology';
 
-    // Optional: Helper method for labels
     public function label(): string
     {
         return match($this) {
