@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Club;
+use App\Models\Membership;
+use App\Models\Post;
+use App\Modles\Events;
+use App\Enums\ClubRole;
 use App\Enums\UserStatus;
 use App\Enums\UserVerification;
 use Illuminate\Database\Seeder;
@@ -38,6 +43,36 @@ class DatabaseSeeder extends Seeder
             ]
         );
         
-        // Club::factory(5)->create(); 
+        // 1. Create the Committee User FIRST
+        $committee = User::create([
+            'name' => 'Committee Lead',
+            'email' => 'admin@club.com',
+            'password' => Hash::make('password'),
+        ]);
+
+        // 2. Create the Regular Member SECOND
+        $member = User::create([
+            'name' => 'Regular Student',
+            'email' => 'student@club.com',
+            'password' => Hash::make('password'),
+        ]);
+
+        // 3. Create the Club
+        $club = Club::create([
+            'name' => 'Tech & Coding Society',
+            'description' => 'A club for developers.',
+        ]);
+
+        // 4. NOW you can use $committee and $member because they were defined above
+        $club->users()->attach($committee->id, ['role' => ClubRole::COMMITTEE->value]);
+        $club->users()->attach($member->id, ['role' => ClubRole::MEMBER->value]);
+
+        // 5. Create a Post
+        Post::create([
+            'club_id' => $club->id,
+            'user_id' => $committee->id, // Uses the $committee variable from step 1
+            'title' => 'Welcome to the Club!',
+            'body' => 'This is our first official post.',
+        ]);
     }
 }
