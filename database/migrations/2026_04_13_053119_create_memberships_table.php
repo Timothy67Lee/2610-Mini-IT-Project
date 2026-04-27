@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\ClubRole;
 
 return new class extends Migration
 {
@@ -15,9 +16,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('club_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('role_id')->default(1)->constrained('user_roles'); 
-            $table->foreignId('status_id')->default(1)->constrained('user_statuses');
-            $table->foreignId('verification_id')->default(1)->constrained('verification');
+            $table->string('role')->default(ClubRole::MEMBER->value);
+            $table->string('status')->default('active');
+            $table->string('verification')->default('unverified');
             $table->timestamps();
         });
     }
