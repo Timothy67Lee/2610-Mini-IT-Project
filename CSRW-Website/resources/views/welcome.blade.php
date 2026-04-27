@@ -7,7 +7,7 @@
 <body>
     <h1>WELCOME TO MMU's CLUB & SOCIETY OFFICIAL WEBPAGE</h1>
     
-    <a href="" class="btn">
+    <a href="/navigation" class="btn">
         Find Clubs or Society!
     </a>
 
