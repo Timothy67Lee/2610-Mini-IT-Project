@@ -43,14 +43,14 @@ class DatabaseSeeder extends Seeder
             ]
         );
         
-        //Create the Committee User FIRST
+        //Create the Committee User
         $committee = User::create([
             'name' => 'Committee Lead',
             'email' => 'admin@club.com',
             'password' => Hash::make('password'),
         ]);
 
-        //Create the Regular Member SECOND
+        //Create the Regular Member
         $member = User::create([
             'name' => 'Regular Student',
             'email' => 'student@club.com',

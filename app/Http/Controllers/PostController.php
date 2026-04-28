@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function store(Request $request)
     {
-        // 1. Validate the input
+        // Validate the input
         $request->validate([
             'title' => 'required|string|max:255',
             'body' => 'required',
@@ -20,13 +20,13 @@ class PostController extends Controller
 
         $club = Club::findOrFail($request->club_id);
 
-        // 2. AUTHORIZATION
+        // AUTHORIZATION
         // Checks if the logged-in user is a committee member of THIS specific club
         if (!$club->members()->where('user_id', auth()->id())->where('role', 'committee')->exists()) {
             abort(403, 'Unauthorized: Only committee members can post updates.');
         }
 
-        // 3. Create the Post
+        // Create the Post
         $post = Post::create([
             'title' => $request->title,
             'body' => $request->body,
@@ -34,7 +34,7 @@ class PostController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        // 4. NOTIFICATION
+        // NOTIFICATION
         // Fetch only members of this club to notify them
         $members = $club->members;
         foreach ($members as $member) {
