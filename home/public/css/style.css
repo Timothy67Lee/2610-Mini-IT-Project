@@ -1,0 +1,669 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 20px;
+    padding-top: 100px;
+    padding-bottom: 60px;
+}
+
+.club-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.club-card {
+    background: grey;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,1);
+    padding: 20px;
+    margin: 10px;
+    text-align:center;
+    display: block;
+    text-decoration: none;
+}
+
+.club-card h3 {
+    margin: 10px;
+    font-size: 20px;
+    color: black;
+}
+
+.club-card p {
+    font-size: 14px;
+    color: black;
+}
+
+.club-card img {
+    width: 100px;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+}
+
+.club-card:hover {
+    box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+    background: yellow;
+}
+
+header {
+    width: 100%;
+    background-color: grey;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    z-index: 1000; /* keeps header above content */
+}
+
+.sub-header {
+    background-color: grey; 
+    padding: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid grey;
+    text-align: center;
+}
+
+.sub-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: black;
+}
+
+
+
+footer {
+    position: fixed;   
+    bottom: 0;
+    left: 0;
+    width: 100%;       
+    background-color: grey; 
+    text-align: center;
+    padding: 15px;
+    z-index: 1000;     
+}
+
+.post-card h3,
+.post-card p,
+.post-card h4,
+.post-card small {
+    text-align: center;
+    display: block;
+    margin: 8px auto;
+}
+
+.post-card {
+    background-color: grey; /* grey */
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 700px;   /* wider card */
+    width: 100%;
+    text-align: center;
+}
+
+.post-image {
+    display: block;
+    margin: 0 auto;          /* centers horizontally */
+    width: 100%;             /* fills card width */
+    max-width: 400px;        /* ✅ controls how wide it can get */
+    height: auto;            /* keeps proportions, no crop */
+    object-fit: contain;     /* shows full image */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.post-content {
+    padding: 16px;
+    margin: 12px 0;
+}
+
+.post-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+
+.post-card:hover {
+    background: yellow;
+}
+
+
+.page-header {
+    background: grey;
+    color: white;
+    text-align: center;
+    padding: 30px 0;       
+    margin: 0 0 3.0rem 0;  
+}
+
+.page-header h1 {
+    font-size: 1.6rem;     
+    font-weight: 600;      
+    margin: 0;
+}
+
+
+
+.club-card-header {
+    background: grey;     
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;  
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.club-image-rect {
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+}
+
+.club-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: white; /* text visible on grey */
+}
+
+.club-description {
+    color: white; /* description visible on grey */
+    margin-bottom: 1rem;
+}
+
+.club-name-box {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.club-name {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+
+.btn {
+    display:inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1 ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-green {
+    background-color: green;
+    color: white;
+}
+
+.btn-blue {
+    background-color: blue;
+    color: white;
+}
+
+.btn-red {
+    background-color: red;
+    color: white;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.form-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.form-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.styled-form .form-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.styled-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #444;
+}
+
+.styled-form input[type="text"],
+.styled-form input[type="file"],
+.styled-form textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.styled-form input:focus,
+.styled-form textarea:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+.btn-submit {
+    display: inline-block;
+    width: 100%;
+    padding: 0.8rem;
+    background: linear-gradient(90deg, #2563eb, #1e40af);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, #1e40af, #2563eb);
+}
+
+
+.edit-form {
+    background: #fff7f0; 
+    border: 2px solid #f97316; 
+}
+
+.btn-update {
+    display: inline-block;
+    width: 100%;
+    padding: 0.8rem;
+    background: linear-gradient(90deg, #f97316, #ea580c); /* orange gradient */
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.btn-update:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, #ea580c, #f97316);
+}
+
+
+.club-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* Header Nav Bar */
+.navbar {
+    width: 100%;
+    background-color: red; 
+    color: white;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 12px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px; 
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;   
+    height: 40px;
+    background-color: #333;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1.2rem; 
+    transition: background-color 0.2s ease;
+}
+
+.nav-links a:hover {
+    background-color: #555;
+}
+
+#scrollTopBtn {
+    position: fixed;
+    bottom: 120px;
+    right: 40px;
+    background-color: blue;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 12px 20px;
+    z-index: 9999;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    animation: bounce 1.5s infinite;
+    
+}
+
+#scrollTopBtn.hidden {
+    display: none;
+}
+
+.arrow {
+    display: inline-block;
+    margin-left: 6px;
+    width: 0; 
+    height: 0; 
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 8px solid white; 
+}
+
+/* Bounce keyframes */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.calendar-container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    margin: 0 20px;
+    color: #2563eb;
+    font-weight: bold;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-btn:hover {
+    color: #1e40af;
+    transform: scale(1.2);
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.calendar-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 200px;
+}
+
+.calendar-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #007bff;   /* 🔵 bright blue arrows */
+    cursor: pointer;
+    width: 40px;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.calendar-arrow:hover {
+    color: #0056b3;   /* darker blue on hover */
+}
+
+#prevMonth {
+    left:100px;
+}
+
+#nextMonth {
+    right: 100px;
+}
+
+
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.calendar-table th {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.calendar-table td {
+    border: 1px solid #ddd;
+    height: 80px;
+    vertical-align: top;
+    padding: 5px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Generic hover for all cells */
+.calendar-table td:hover {
+    background-color: red;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+/* Today cell default (always blue) */
+.calendar-table td.today-cell {
+    background-color: #2563eb;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+/* Today cell hover (override red) */
+.calendar-table td.today-cell:hover {
+    background-color: #1e40af; /* darker blue */
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
+
+.event-label {
+    font-size: 10px;
+    color: #2563eb;
+    margin-top: 2px;
+}
+
+.event-sticker {
+    background-color: #ffe066;  
+    color: #333;
+    font-size: 11px;
+    padding: 4px 6px;
+    margin-top: 4px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    text-align: left;
+}
+
+.event-sticker strong {
+    display: block;
+    font-size: 12px;
+    color: #000;
+}
+
+/* Event Form Container */
+.event-form-container {
+    max-width: 600px;
+    margin: 3rem auto;
+    background: #f0f8ff; /* soft light blue */
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+/* Title */
+.event-form-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #1e40af;
+}
+
+/* Inputs */
+.event-form .form-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.event-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #333;
+}
+
+.event-form input {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.event-form input:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+/* Button */
+.btn-event {
+    display: inline-block;
+    width: 100%;
+    padding: 0.9rem;
+    background: linear-gradient(90deg, #2563eb, #1e40af);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.edit-event-container {
+    max-width: 900px;
+    margin: 50px auto;   /* centers vertically and horizontally */
+    padding: 30px;
+    background: plum;    /* white box */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* subtle shadow */
+}
+
+.events-table-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;   /* pushes table away from footer */
+}
+
+.events-table {
+    width: 75%;
+    border-collapse: collapse;
+    text-align: center;
+    background: #fff;
+}
+
+.events-table th,
+.events-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.events-table th {
+    background: #333;
+    color: #fff;
+}
+
+.btn-edit {
+    background-color: #2563eb; 
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btn-delete {
+    background-color: #dc2626; 
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.events-table tr:hover {
+    background-color: #f0f8ff; 
+    cursor: pointer;          
+}
+
