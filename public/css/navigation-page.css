@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    max-width: 100%;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 90%;
+    margin: 0 auto;
+    padding: 2% 0;
+    grid-gap: 2px;
+}
+
+.container a{
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+}
+
+.container > a > img{
+    height: 300px;
+    object-fit: cover;  
+}
+
+
+
+.container a img {
+    transition: 1s;
+    filter: brightness(40%);
+    width: 100%;
+    position: relative;
+    z-index: 0;
+    transform: scale(1.2)
+}
+
+.container a img:hover {
+    transition: 1s ease;
+    filter: brightness(100%);
+    transform: scale(1);
+    cursor:pointer;
+}
+
+.container a p {
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    z-index: 999;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(229, 229, 229);
+    font-weight: 300;
+    font-size: 30px;
+    transition: 1s;
+}
+
+.container a p:hover{
+    color: white;
+    transition: 1s;
+    
+}
+
+h1 {
+    position: absolute;
+    top: 100;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3em;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+    
+}
+
+header {
+    height: 40vh;
+    margin: 0;
+}
+
+header img {
+    filter: brightness(30%);
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+h2 {
+    margin-top: 5em;
+    margin-bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.2em;
+    text-transform: uppercase;
+
+}
