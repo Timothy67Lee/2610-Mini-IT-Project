@@ -9,7 +9,7 @@
     <ul class="right-side-nav">
         <li><a href="{{ url('/navigation') }}">Clubs</a></li>
         <div class="underline"></div>
-        <li><a href="{{ url('/calendar') }}">Calendar</a></li>
+        <li><a href="{{ url('/navigation') }}">Calendar</a></li>
         <div class="underline"></div>
     </ul>
 </div>

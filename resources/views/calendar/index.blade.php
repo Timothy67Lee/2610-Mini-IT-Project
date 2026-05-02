@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
 <div class="calendar-container">
     <!-- Calendar header -->
