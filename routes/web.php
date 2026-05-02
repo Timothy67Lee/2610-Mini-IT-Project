@@ -81,7 +81,8 @@ Route::get('/clubs/{club}/events/{event}/edit', [EventController::class, 'edit']
 Route::put('/clubs/{club}/events/{event}', [EventController::class, 'update'])->name('events.update');
 Route::delete('/clubs/{club}/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 
-
+// Creating Clubs routes
+Route::resource('clubs', 'ClubController');
 
 
 
