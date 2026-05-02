@@ -51,7 +51,7 @@ Route::get('/navigation', function () {
 
 // Rowen routes 
 // Homepage → list clubs + posts
-Route::get('/', [ClubController::class, 'index'])->name('home');
+Route::get('/navigation', [ClubController::class, 'index'])->name('home');
 
 // Club detail
 Route::get('/clubs/{club}', [ClubController::class, 'show'])->name('clubs.show');

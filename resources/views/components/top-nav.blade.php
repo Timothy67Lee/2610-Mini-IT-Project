@@ -3,13 +3,13 @@
 <div class="top-nav">
     <img src="images/drop down.png" id="drop-down">
     <ul class="drop-down-list">
-        <li><a href="{{ url('/') }}">Home</a></li>
-        <li><a href="{{ url('/profile') }}">Profile</a></li>
+        <a href="{{ url('/') }}"><li>Home</li></a>
+        <a href="{{ url('/profile') }}"><li>Profile</li></a>
     </ul>
     <ul class="right-side-nav">
-        <li><a href="{{ url('/navigation') }}">Clubs</a></li>
+        <a href="{{ url('/navigation') }}"><li>Clubs</li></a>
         <div class="underline"></div>
-        <li><a href="{{ url('/navigation') }}">Calendar</a></li>
+        <a href="{{ url('/calendar') }}"><li>Calendar</li></a>
         <div class="underline"></div>
     </ul>
 </div>
