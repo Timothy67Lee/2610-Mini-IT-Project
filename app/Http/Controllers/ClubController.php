@@ -2,152 +2,94 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Club;
+use App\Enums\ClubRole;
 use App\Notifications\ClubNotification;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClubController extends Controller
-{   
-
-        public function index()
+{
+    /**
+     * Show the form to send a notification.
+     */
+    public function showNotifyForm(Club $club)
     {
-        // Temporary hardcoded data until DB is ready
-        $clubs = [
-            [
-                "name" => "MMUsic Club",
-                "category" => "Arts Clubs",
-                "profile_picture" => "images/1.jpg"
-            ],
-            [
-                "name" => "MMU Superheroes",
-                "category" => "Community Clubs",
-                "profile_picture" => "images/2.jpg"
-            ],
-            [
-                "name" => "Buddhist Society",
-                "category" => "Religious Clubs",
-                "profile_picture" => "images/3.png"
-            ],
-            [
-                "name" => "MMU Esports",
-                "category" => "Games / Entertainment Clubs",
-                "profile_picture" => "images/4.png"
-            ],
-            [
-                "name" => "Chinese Language Society",
-                "category" => "Cultural Clubs",
-                "profile_picture" => "images/5.png"
-            ],
-            [
-                "name" => "IT Society",
-                "category" => "Tech Clubs",
-                "profile_picture" => "images/6.jpg"
-            ],
-            [
-                "name" => "Badminton Club",
-                "category" => "Recreational / Physical Activities Clubs",
-                "profile_picture" => "images/7.jpg"
-            ],
-            [
-                "name" => "CyberFitness Club",
-                "category" => "Recreational / Physical Activities Clubs",
-                "profile_picture" => "images/8.jpg"
-            ],
-            [
-                "name" => "TechGirls MMU",
-                "category" => "Tech Clubs",
-                "profile_picture" => "images/9.jpg"
-            ],
-            [
-                "name" => "Rentak Dance Club",
-                "category" => "Arts Clubs",
-                "profile_picture" => "images/10.jpg"
-            ],
-            [
-                "name" => "Chess Club",
-                "category" => "Games / Entertainment Clubs",
-                "profile_picture" => "images/11.jpeg"
-            ],
-            [
-                "name" => "University Peer Group",
-                "category" => "Community Clubs",
-                "profile_picture" => "images/12.png"
-            ],
-            [
-                "name" => "Table Tennis Club",
-                "category" => "Recreational / Physical Activities Clubs",
-                "profile_picture" => "images/13.png"
-            ],
-        ];
-
-        return view('navigation', compact('clubs'));
-    }
-
-
- public function store(Request $request,  \App\Models\Club $club)
-    {
-
-
-
-        // AUTHORIZATION
-        // Checks if the logged-in user is a committee member of THIS specific club
-        if (!$club->members()->where('user_id', auth()::id())->where('role', 'committee')->exists()) {
-            abort(403, 'Unauthorized: Only committee members can post updates.');
+        // Security check
+        $membership = $club->users()->where('user_id', Auth::id())->first();
+        if (!$membership || $membership->pivot->role !== ClubRole::COMMITTEE->value) {
+            abort(403, 'Unauthorized.');
         }
 
-        $validated = $request->validate([
-        'title'   => 'required|string|max:255',
-        'content' => 'required|string',
-        'image'   => 'nullable|image|max:2048',
-          ]);
+        return view('clubs.notify', compact('club'));
+    }
+    
+    /**
+     * Process and send the notification.
+     */
+    public function sendUpdate(Request $request, Club $club) // Fixed: Use Club $club for consistency
+    {
+        // 1. SECURITY CHECK: Don't forget this!
+        $membership = $club->users()->where('user_id', Auth::id())->first();
+        if (!$membership || $membership->pivot->role !== ClubRole::COMMITTEE->value) {
+            abort(403, 'Unauthorized.');
+        }
 
-        if ($request->hasFile('image')) {
-        $validated['image'] = $request->file('image')->store('posts', 'public');
-         }
+        // 2. VALIDATION: Ensure the message isn't empty
+        $request->validate([
+            'message' => 'required|string|min:5',
+        ]);
 
-        // Attach post to the club
-        $club->posts()->create($validated);
+        $messageContent = $request->input('message');
 
-        return redirect()->route('/navigation', $club->id)
-                        ->with('success', 'Post created successfully!');
+        // 3. GET MEMBERS: Use the relationship defined in your Club model
+        // Note: Make sure your Club model has a 'users' or 'members' relationship
+        $members = $club->users; 
 
-        // NOTIFICATION
-        // Fetch only members of this club to notify them
-        $members = $club->members;
+        // 4. SEND NOTIFICATION: Exclude the sender so they don't notify themselves
         foreach ($members as $member) {
-            if ($member->id !== auth()->id()) {
-                $member->notify(new ClubNotification($club, "New Post: " . $post->title));
+            if ($member->id !== Auth::id()) {
+                $member->notify(new ClubNotification($club, $messageContent));
             }
         }
 
-        return redirect()->back()->with('success', 'Post created and members notified!');
+        return redirect()->route('clubs.show', $club->id)
+                         ->with('status', 'Notification sent to ' . ($members->count() - 1) . ' members!');
     }
 
-    /*send an update to all members of a specific club. */
-    public function sendUpdate(Request $request, $id)
+    // Temporary store function as we figure out how to reroute things
+
+    public function store(Request $request,  \App\Models\Club $clubs)
     {
-        // Find the club
-        $club = Club::findOrFail($id);
 
-        // The message from your form
-        $messageContent = $request->input('message'); 
+        $validated = $request->validate([
+        'name'   => 'required|string|max:255',
+        'category' => 'required',
+        'profile_picture'   => 'nullable|image|max:2048',
+        
+          ]);
 
-        // Get all members of THIS club
-        $members = $club->members; 
+        if ($request->hasFile('profile_picture')) {
+        $validated['profile_picture'] = $request->file('profile_picture')->store('clubs', 'public');
+         }
 
-        // Send the notification to each member
-        foreach ($members as $member) {
-            $member->notify(new ClubNotification($club, $messageContent));
-        }
 
-        return back()->with('status', 'Notification sent to ' . $members->count() . ' members!');
+        return redirect()->route('navigation')
+                        ->with('success', 'Club created successfully!');
+
+    }
+
+    public function index()
+    {
+
+        $clubs = Club::all(); // Better than empty logic
+        return view('navigation', compact('clubs'));
     }
 
     public function create(\App\Models\Club $club)
     {
       return view('create-clubs.create', compact('club'));
     }
-
 
 
 }
