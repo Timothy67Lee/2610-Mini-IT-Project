@@ -84,7 +84,7 @@ class ClubController extends Controller
     }
 
 
- public function store(Request $request)
+ public function store(Request $request,  \App\Models\Club $club)
     {
 
 
@@ -95,13 +95,21 @@ class ClubController extends Controller
             abort(403, 'Unauthorized: Only committee members can post updates.');
         }
 
-        // Create the Post
-        $post = Post::create([
-            'title' => $request->title,
-            'body' => $request->body,
-            'club_id' => $club->id,
-            'user_id' => auth()->id(),
-        ]);
+        $validated = $request->validate([
+        'title'   => 'required|string|max:255',
+        'content' => 'required|string',
+        'image'   => 'nullable|image|max:2048',
+          ]);
+
+        if ($request->hasFile('image')) {
+        $validated['image'] = $request->file('image')->store('posts', 'public');
+         }
+
+        // Attach post to the club
+        $club->posts()->create($validated);
+
+        return redirect()->route('/navigation', $club->id)
+                        ->with('success', 'Post created successfully!');
 
         // NOTIFICATION
         // Fetch only members of this club to notify them
@@ -134,4 +142,12 @@ class ClubController extends Controller
 
         return back()->with('status', 'Notification sent to ' . $members->count() . ' members!');
     }
+
+    public function create(\App\Models\Club $club)
+    {
+      return view('create-clubs.create', compact('club'));
+    }
+
+
+
 }
