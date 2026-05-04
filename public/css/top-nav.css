@@ -52,12 +52,10 @@
 }
 
 li {
-    
     list-style: none;
     padding: 20px;
     width: 100px;
     text-align: center;
-    color: black;
 }
 
 a {

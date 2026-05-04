@@ -74,7 +74,7 @@
         <h2>Cultural Clubs</h2>
         <div class="container">
         @foreach ($clubs as $club)
-        @if ($$club->category == "Cultural Clubs")
+        @if ($club->category == "Cultural Clubs")
         
           <a href="clubs/{{$club->name}}">
             <p>{{$club->name }}</p>

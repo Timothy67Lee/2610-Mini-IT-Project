@@ -77,8 +77,9 @@ class ClubController extends Controller
         if ($request->hasFile('profile_picture')) {
         $validated['profile_picture'] = $request->file('profile_picture')->store('clubs', 'public');
          }
-
-        $validated['owner_id'] = Auth::id();
+        else{
+            $profile_picture = "images/1.png";
+        }
 
         Club::create($validated);
 
