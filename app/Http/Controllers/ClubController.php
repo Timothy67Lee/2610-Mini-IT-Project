@@ -81,6 +81,8 @@ class ClubController extends Controller
             $profile_picture = "images/1.png";
         }
 
+        $validated['owner_id'] = Auth::id();
+
         Club::create($validated);
 
         return redirect()->route('navigation')

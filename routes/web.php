@@ -80,4 +80,10 @@ Route::resource('clubs', ClubController::class)->except(['create', 'store']);
 Route::get('/create-clubs', [ClubController::class, 'create'])->name('create-clubs.create');
 Route::post('/create-clubs', [ClubController::class, 'store'])->name('create-clubs.store');
 
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+});
+
+
 require __DIR__ . '/auth.php';
