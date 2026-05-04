@@ -18,7 +18,8 @@ class Club extends Model
         'name',
         'description',
         'category', // need this, otherwise can't mass-assign categories.
-        'owner_id',
+        'club_id',
+        'profile_picture'
     ];
 
     // app/Models/Club.php
