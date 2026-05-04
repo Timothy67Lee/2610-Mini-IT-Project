@@ -7,6 +7,7 @@ use App\Enums\ClubRole;
 use App\Notifications\ClubNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
 
 class ClubController extends Controller
 {
@@ -43,7 +44,6 @@ class ClubController extends Controller
         $messageContent = $request->input('message');
 
         // 3. GET MEMBERS: Use the relationship defined in your Club model
-        // Note: Make sure your Club model has a 'users' or 'members' relationship
         $members = $club->users; 
 
         // 4. SEND NOTIFICATION: Exclude the sender so they don't notify themselves
@@ -57,9 +57,19 @@ class ClubController extends Controller
                          ->with('status', 'Notification sent to ' . ($members->count() - 1) . ' members!');
     }
 
-    public function index()
+    public function apiSearch(Request $request): JsonResponse
     {
-        $clubs = Club::all(); // Better than empty logic
-        return view('welcome', compact('clubs'));
+        $query = $request->query('q', '');
+        $clubs = Club::where('name', 'LIKE', "%{$query}%")
+            ->orWhere('description', 'LIKE', "%{$query}%")
+            ->select('id', 'name', 'description')
+            ->limit(100) // max search result
+            ->get();
+        return response()->json($clubs);
+    }
+
+    public function index(Club $club)
+    {
+        return view('clubs.show', compact('club'));
     }
 }

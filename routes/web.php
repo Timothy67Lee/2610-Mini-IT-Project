@@ -14,7 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Homepage - Lists clubs and posts
-Route::get('/', [ClubController::class, 'index'])->name('home');
+//Route::get('/', [ClubController::class, 'index'])->name('home');
+
+Route::get('/', function () {return view('welcome');}); // for lzh testing 
+
+// Global search
+Route::get('/clubs/search', [ClubController::class, 'apiSearch'])->name('clubs.api-search'); // global search bar
 
 // Navigation and Public Calendar
 Route::get('/navigation', function () {
