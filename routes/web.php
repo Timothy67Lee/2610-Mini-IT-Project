@@ -4,7 +4,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\UserController;
 use App\Models\Event;
+use App\Models\Club;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +15,11 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-// Homepage - Lists clubs and posts
-Route::get('/', [ClubController::class, 'index'])->name('home');
+// Homepage – lists posts (and clubs if you want)
+Route::get('/', [PostController::class, 'index'])->name('home');
 
 // Navigation and Public Calendar
-Route::get('/navigation', function () {
-    return view('navigation');
-})->name('navigation');
-
+Route::get('/navigation', [ClubController::class, 'list'])->name('navigation');
 Route::get('/calendar', function () {
     $events = Event::all();
     return view('calendar.index', compact('events'));
@@ -30,35 +29,59 @@ Route::get('/calendar', function () {
 Route::get('/clubs', [ClubController::class, 'list'])->name('clubs.index');
 Route::get('/clubs/{club}', [ClubController::class, 'show'])->name('clubs.show');
 
+// Follow/Unfollow Clubs
+Route::post('/clubs/{club}/follow', [UserController::class, 'followClub'])->name('clubs.follow');
+Route::delete('/clubs/{club}/unfollow', [UserController::class, 'unfollowClub'])->name('clubs.unfollow');
+
 /*
 |--------------------------------------------------------------------------
 | Authenticated Routes
 |--------------------------------------------------------------------------
 */
+Route::middleware(['auth'])->group(function () {
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Dashboard – only followed clubs/events
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
     // Profile Management
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', fn() => view('profile.profile'))->name('profile.show');
+    Route::get('/profile/edit', fn() => view('profile.edit'))->name('profile.edit');
 
-    // Notifications Feed (JSON or View)
-    Route::get('/notifications', function () {
-        return auth()->user()->notifications;
-    })->name('notifications.index');
+    Route::patch('/profile', function (\Illuminate\Http\Request $request) {
+        $user = Auth::user();
+
+        $request->validate([
+            'name'             => 'required|string|max:255',
+            'email'            => 'required|email|max:255',
+            'profile_picture'  => 'nullable|image|max:2048',
+        ]);
+
+        $user->name  = $request->name;
+        $user->email = $request->email;
+
+        if ($request->hasFile('profile_picture')) {
+            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+            $user->profile_picture = $path;
+        }
+
+        $user->save();
+
+        return redirect()->route('profile.show')->with('success', 'Profile updated successfully!');
+    })->name('profile.update');
+
+    Route::delete('/profile', function () {
+        Auth::user()->delete();
+        return redirect('/')->with('success', 'Profile deleted successfully!');
+    })->name('profile.destroy');
+
+    // Notifications Feed
+    Route::get('/notifications', fn() => auth()->user()->notifications)->name('notifications.index');
 
     // Committee Club Management (Notifications)
-    // FIXED: Changed {id} to {club} to match EventController pattern
     Route::get('/clubs/{club}/notify', [ClubController::class, 'showNotifyForm'])->name('clubs.notify.form');
     Route::post('/clubs/{club}/notify', [ClubController::class, 'sendUpdate'])->name('clubs.notify.send');
 
     // Posts Management
-    // We use resource for edit/update/destroy, and manual routes for creation linked to a club
     Route::resource('posts', PostController::class)->except(['create', 'store']);
     Route::get('/clubs/{club}/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('/clubs/{club}/posts', [PostController::class, 'store'])->name('posts.store');
@@ -66,6 +89,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Events Management
     Route::get('/clubs/{club}/events/create', [EventController::class, 'create'])->name('events.create');
     Route::post('/clubs/{club}/events', [EventController::class, 'store'])->name('events.store');
+    Route::get('/clubs/{club}/events/{event}', [EventController::class, 'show'])->name('events.show');
     Route::get('/clubs/{club}/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
     Route::put('/clubs/{club}/events/{event}', [EventController::class, 'update'])->name('events.update');
     Route::delete('/clubs/{club}/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
