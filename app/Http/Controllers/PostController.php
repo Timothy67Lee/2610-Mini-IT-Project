@@ -104,29 +104,30 @@ class PostController extends Controller
         return view('posts.edit', compact('club', 'post'));
     }
 
-    public function update(Request $request, Club $club, Post $post)
-    {
-        $validated = $request->validate([
-            'title'   => 'required|string|max:255',
-            'content' => 'required|string',
-            'media.*' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:10240',
-        ]);
+    public function update(Request $request, Post $post)
+{
+    $validated = $request->validate([
+        'title'   => 'required|string|max:255',
+        'content' => 'required|string',
+        'media.*' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:10240',
+    ]);
 
-        $post->update($validated);
+    $post->update($validated);
 
-        if ($request->hasFile('media')) {
-            foreach ($request->file('media') as $file) {
-                $path = $file->store('posts', 'public');
-                $post->media()->create([
-                    'type' => 'image', 
-                    'path' => $path,
-                ]);
-            }
+    if ($request->hasFile('media')) {
+        foreach ($request->file('media') as $file) {
+            $path = $file->store('posts', 'public');
+            $post->media()->create([
+                'type' => 'image', 
+                'path' => $path,
+            ]);
         }
-
-        return redirect()->route('clubs.show', $club->id)
-                         ->with('success', 'Post updated successfully!');
     }
+
+    // Redirect using the post's existing club relationship ID
+    return redirect()->route('clubs.show', $post->club_id)
+                     ->with('success', 'Post updated successfully!');
+}
 
     public function destroy(Post $post)
     {

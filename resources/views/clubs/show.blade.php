@@ -145,7 +145,7 @@
 
                 @if($isCommittee)
                 <div class="mt-2" style="margin: 0 auto;">
-                    <a href="{{ route('posts.edit', [$club->id, $post->id]) }}" class="btn-green">Edit</a>
+                    <a href="{{ route('posts.edit', [$post->id]) }}" class="btn-green">Edit</a>
                     <form action="{{ route('posts.destroy', $post->id) }}" 
                         method="POST" 
                         style="display:inline;" 

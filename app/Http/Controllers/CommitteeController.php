@@ -89,7 +89,8 @@ class CommitteeController extends Controller
             'committee'
         ));
 
-        return redirect()->route('committee.index', ['club' => $club->id])
+        // MATCHED: Updated to your manual route name from web.php
+        return redirect()->route('clubs.committee', ['club' => $club->id])
                          ->with('success', 'Invitation sent successfully!');
     }
 
@@ -108,7 +109,8 @@ class CommitteeController extends Controller
                 'updated_at' => now(),
             ]);
 
-        return redirect()->route('committee.index', ['club' => $club->id])
+        // MATCHED: Updated to your manual route name from web.php
+        return redirect()->route('clubs.committee', ['club' => $club->id])
                          ->with('success', 'Your response has been recorded.');
     }
 
@@ -159,7 +161,8 @@ class CommitteeController extends Controller
                 ->delete();
         }
 
-        return redirect()->route('committee.index', ['club' => $club->id])
+        // MATCHED: Updated to your manual route name from web.php
+        return redirect()->route('clubs.committee', ['club' => $club->id])
                          ->with('success', 'Member removed successfully!');
     }
 
